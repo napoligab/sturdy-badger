@@ -1,0 +1,40 @@
+{
+  "name": "device-control-panel",
+  "private": true,
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "format": "prettier -w ."
+  },
+  "dependencies": {
+    "@angular/animations": "^17.3.0",
+    "@angular/common": "^17.3.0",
+    "@angular/compiler": "^17.3.0",
+    "@angular/core": "^17.3.0",
+    "@angular/forms": "^17.3.0",
+    "@angular/platform-browser": "^17.3.0",
+    "@angular/platform-browser-dynamic": "^17.3.0",
+    "@angular/router": "^17.3.0",
+    "rxjs": "^7.8.1",
+    "tslib": "^2.6.2",
+    "zone.js": "^0.14.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^17.3.0",
+    "@angular/cli": "^17.3.0",
+    "@angular/compiler-cli": "^17.3.0",
+    "@ngneat/spectator": "^18.0.2",
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "jest-preset-angular": "^14.0.0",
+    "prettier": "^3.4.2",
+    "ts-jest": "^29.1.2",
+    "typescript": "~5.4.5"
+  }
+}

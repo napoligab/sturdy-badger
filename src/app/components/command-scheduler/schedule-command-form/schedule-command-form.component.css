@@ -1,0 +1,53 @@
+:host {
+  display: block;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.help {
+  margin: 0;
+  font-size: 12px;
+}
+
+.field__error {
+  margin: 0;
+  font-size: 12px;
+  color: var(--danger);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.details {
+  margin-top: 8px;
+}
+
+pre {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px;
+  margin: 8px 0 0;
+}

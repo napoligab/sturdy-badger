@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.title {
+  margin: 0;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

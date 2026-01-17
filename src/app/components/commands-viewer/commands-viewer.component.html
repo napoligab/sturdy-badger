@@ -1,0 +1,91 @@
+<section class="card">
+  <header class="card__header">
+    <h2>Commands</h2>
+
+    <div class="card__tools">
+      <div class="field field--inline">
+        <label for="status-filter">Status</label>
+        <select
+          id="status-filter"
+          [value]="statusFilter"
+          (change)="onStatusFilterChange($any($event.target).value)"
+          [disabled]="!selectedDeviceId"
+        >
+          <option value="ALL">All</option>
+          <option value="PENDING">Pending</option>
+          <option value="LEASED">Leased</option>
+          <option value="TERMINAL">Terminal</option>
+        </select>
+      </div>
+
+      <button
+        type="button"
+        (click)="onRefresh()"
+        [disabled]="!selectedDeviceId || commandsState === 'loading'"
+      >
+        Refresh
+      </button>
+    </div>
+  </header>
+
+  <p *ngIf="!selectedDeviceId" class="muted">Select a device to view its commands.</p>
+
+  <div *ngIf="selectedDeviceId">
+    <div class="meta">
+      <span *ngIf="commandsRefreshing" class="muted">Refreshing...</span>
+      <span *ngIf="lastUpdatedAt" class="muted">
+        Last updated: {{ lastUpdatedAt | date : 'mediumTime' }}
+      </span>
+    </div>
+
+    <p *ngIf="commandsState === 'loading'" class="muted">Loading commands...</p>
+
+    <div *ngIf="commandsState === 'error'" class="error">
+      <strong>Error loading commands:</strong> {{ commandsError }}
+      <button type="button" (click)="onRefresh()">Retry</button>
+    </div>
+
+    <div *ngIf="commandsState === 'ready'">
+      <p *ngIf="visibleCommands.length === 0" class="muted">No commands found for this device.</p>
+
+      <div *ngIf="visibleCommands.length > 0" class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>commandId</th>
+              <th>createdAt</th>
+              <th>type</th>
+              <th>status</th>
+              <th>leaseExpiresAt</th>
+              <th>completedAt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cmd of visibleCommands">
+              <td><code>{{ cmd.commandId }}</code></td>
+              <td>{{ cmd.createdAt | date : 'yyyy-MM-dd HH:mm:ss' }}</td>
+              <td><code>{{ cmd.type }}</code></td>
+              <td>
+                <span [class]="statusBadgeClass(cmd.status)">{{ cmd.status }}</span>
+              </td>
+              <td>
+                {{
+                  cmd.leaseExpiresAt
+                    ? (cmd.leaseExpiresAt | date : 'yyyy-MM-dd HH:mm:ss')
+                    : '-'
+                }}
+              </td>
+              <td>
+                {{
+                  cmd.completedAt
+                    ? (cmd.completedAt | date : 'yyyy-MM-dd HH:mm:ss')
+                    : '-'
+                }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

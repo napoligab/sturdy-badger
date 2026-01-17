@@ -1,0 +1,40 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <p *ngIf="!deviceId" class="muted">
+    Select a device to schedule a command.
+  </p>
+
+  <div class="field">
+    <label for="cmd-type">Type <span aria-hidden="true">*</span></label>
+    <select id="cmd-type" formControlName="type" [disabled]="!deviceId || submitting">
+      <option *ngFor="let t of commandTypes" [value]="t">{{ t }}</option>
+    </select>
+
+    <p class="field__error" *ngIf="form.controls.type.touched && form.controls.type.invalid">
+      Type is required.
+    </p>
+  </div>
+
+  <div class="field">
+    <label for="cmd-params">Params (JSON, optional)</label>
+    <textarea id="cmd-params" rows="6" formControlName="params" [disabled]="!deviceId || submitting"
+      [placeholder]="paramsPlaceholder"></textarea>
+
+    <p class="help muted">Must be valid JSON if provided.</p>
+
+    <p class="field__error" *ngIf="form.controls.params.touched && form.controls.params.errors?.['invalidJson']">
+      Params must be valid JSON.
+    </p>
+  </div>
+
+  <div class="actions">
+    <button type="submit" [disabled]="!deviceId || submitting || form.invalid">
+      {{ submitting ? 'Scheduling...' : 'Schedule command' }}
+    </button>
+  </div>
+
+  <div *ngIf="submitError" class="error" role="alert">
+    <strong>Schedule failed:</strong> {{ submitError }}
+  </div>
+
+
+</form>

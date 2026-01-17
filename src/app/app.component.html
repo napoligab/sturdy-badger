@@ -1,0 +1,34 @@
+<main class="container">
+  <app-header
+    [forceErrors]="forceErrors"
+    (forceErrorsChange)="setForceErrors($event)"
+  ></app-header>
+
+  <app-device-selector
+    [deviceId]="selectedDeviceId"
+    (deviceIdChange)="onDeviceIdChange($event)"
+    [devices]="devices"
+    [devicesState]="devicesState"
+    [devicesError]="devicesError"
+    (reload)="loadDevices()"
+  ></app-device-selector>
+
+  <section class="grid">
+    <app-commands-viewer
+      [selectedDeviceId]="selectedDeviceId"
+      [statusFilter]="statusFilter"
+      (statusFilterChange)="onStatusFilterChange($event)"
+      [commandsState]="commandsState"
+      [commandsError]="commandsError"
+      [commandsRefreshing]="commandsRefreshing"
+      [lastUpdatedAt]="lastUpdatedAt"
+      [commands]="commands"
+      (refresh)="refreshCommands()"
+    ></app-commands-viewer>
+
+    <app-command-scheduler
+      [deviceId]="selectedDeviceId"
+      (scheduled)="refreshCommands()"
+    ></app-command-scheduler>
+  </section>
+</main>

@@ -1,0 +1,30 @@
+<section class="card">
+  <div class="row">
+    <div class="field">
+      <label for="device-select">Device</label>
+      <select
+        id="device-select"
+        [value]="deviceId ?? ''"
+        (change)="onDeviceIdChange($any($event.target).value)"
+        [disabled]="devicesState === 'loading'"
+      >
+        <option value="">Select a device...</option>
+        <option *ngFor="let device of devices" [value]="device.deviceId">
+          {{ device.deviceId }}
+        </option>
+      </select>
+    </div>
+
+    <div class="actions">
+      <button type="button" (click)="onReload()" [disabled]="devicesState === 'loading'">
+        Reload devices
+      </button>
+    </div>
+  </div>
+
+  <p *ngIf="devicesState === 'loading'" class="muted">Loading devices...</p>
+
+  <div *ngIf="devicesState === 'error'" class="error">
+    <strong>Error loading devices:</strong> {{ devicesError }}
+  </div>
+</section>

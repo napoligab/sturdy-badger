@@ -1,0 +1,10 @@
+<section class="card">
+  <header class="card__header">
+    <h2>Schedule a command</h2>
+  </header>
+
+  <app-schedule-command-form
+    [deviceId]="deviceId"
+    (scheduled)="onScheduled()"
+  ></app-schedule-command-form>
+</section>

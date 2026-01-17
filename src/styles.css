@@ -1,0 +1,140 @@
+:root {
+  --bg: #ffffff;
+  --fg: #111111;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --danger: #b91c1c;
+  --ok: #166534;
+  --warn: #92400e;
+  --card: #f9fafb;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+select,
+button,
+textarea,
+input[type='text'] {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: inherit;
+  background: #fff;
+}
+
+button {
+  cursor: pointer;
+  background: #fff;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: 12px;
+}
+
+/* Utility classes (global, shared by multiple components) */
+.muted {
+  color: var(--muted);
+}
+
+.error {
+  border: 1px solid rgba(185, 28, 28, 0.3);
+  background: rgba(185, 28, 28, 0.08);
+  padding: 12px;
+  border-radius: 10px;
+  color: var(--danger);
+}
+
+/* Shared layout primitives (used by multiple components) */
+.card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.card__header h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.row .field {
+  min-width: 240px;
+}
+
+.field--inline {
+  min-width: auto;
+}
+
+label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .row .field {
+    min-width: 0;
+  }
+}
